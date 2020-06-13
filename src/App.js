@@ -3,21 +3,24 @@ import "./styles.css";
 
 const App = () => {
 
-  const contacts = [
-    { name: "Jenny Han", email: "jenny.han@notreal.com", age: 25 },
-    { name: "Jason Long", email: "jason.long@notreal.com", age: 45 },
-    { name: "Peter Pan", email: "peter.pan@neverland.com", age: 100 },
-    { name: "Amy McDonald", email: "amy@email.com", age: 33 }
-   ];
-  
+  const [contacts, setContacts] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("https://randomuser.me/api/?results=3")
+      .then(response => response.json())
+      .then(data => {
+        setContacts(data.results);
+      });
+  }, []);
+
   return (
     <>
       {contacts.map(contact => (
         <ContactCard 
-         avatar="https://via.placeholder.com/150"
-         name={contact.name}
+         avatar={contact.picture.large}
+         name={contact.name.first + " " + contact.name.last}
          email={contact.email}
-         age={contact.age}
+         age={contact.dob.age}
         />
       ))}
     </>
