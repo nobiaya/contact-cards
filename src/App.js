@@ -38,6 +38,7 @@ const ContactCard = props => {
         <p>Email: {props.email} </p>
         {/* line below is the same as {showAge === true ? <p>Age: 25</p> : null}*/}
         {showAge && <p>Age: {props.age} </p> }
+        <p>text</p>
         <button onClick={() => setShowAge(!showAge)}>
           Toggle age
         </button>
